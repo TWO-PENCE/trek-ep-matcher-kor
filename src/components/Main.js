@@ -1,45 +1,46 @@
 import React, { Component } from "react";
-import STapi from "./STapi";
+import { Link } from "react-router-dom";
 
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      series: "Star Trek: The Original Series",
-      season: "",
-      epTitle: ""
+      value: ""
     };
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
+  handleChange(e) {
+    this.setState({ value: e.target.value });
   }
-
-  handleSubmit(event) {}
 
   render() {
-    // return (
-    //   <form onSubmit={this.handleSubmit}>
-    //     {/* series 선택 */}
-    //     <label>
-    //       <select value={this.state.series} onChange={this.handleChange}>
-    //         <option value="">The Original Series</option>
-    //         <option value="">The Animated Series</option>
-    //         <option value="">The Next Generation</option>
-    //         <option value="">Deep Space Nine</option>
-    //         <option value="">Voyager</option>
-    //         <option value="">Discovery</option>
-    //       </select>
-    //     </label>
-    //     <label>
-    //       Episode Title:
-    //       <textarea value={this.state.epTitle} onChange={this.handleChange} />
-    //     </label>
-    //     <input type="submit" value="변환" />
-    //   </form>
-    // );
-
-    return <STapi />;
+    return (
+      <div>
+        <label>
+          Episode Title:
+          <input
+            type="text"
+            value={this.state.value}
+            onChange={this.handleChange}
+          />
+        </label>
+        <Link
+          to={{
+            pathname: "/result",
+            state: {
+              epTitle: this.state.value
+            }
+          }}
+        >
+          <button disabled={!this.state.value}>변환</button>
+        </Link>
+        <Link to="/">
+          <button>초기화</button>
+        </Link>
+      </div>
+    );
   }
 }
 

@@ -1,13 +1,18 @@
-import React from "react";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Main from "./components/Main";
+import STapi from "./components/STapi";
 import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <Main />
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <Route path="/" component={Main} />
+        <Route path="/result" component={STapi} />
+      </Router>
+    );
+  }
 }
 
 export default App;
