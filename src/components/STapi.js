@@ -48,14 +48,18 @@ class STapi extends Component {
   }
 
   render() {
-    return this.epInfo ? <div>{this.epInfo}</div> : <div>준비중</div>;
+    return this.epInfo ? (
+      <div id="divEpOutput">{this.epInfo}</div>
+    ) : (
+      <div id="divEpReady">준비중</div>
+    );
   }
 }
 
 class EpisodeInfo extends Component {
   render() {
     return (
-      <div>
+      <div id="divEpOutputLabel">
         <label>방영 날짜: {this.props.usAirDate} </label>
         <br></br>
         <label>시리즈, 시즌: {this.props.season} </label>
